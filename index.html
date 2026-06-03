@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Lumen | 設計師作品集</title>
+  <meta name="description" content="設計師個人作品集首頁，展示品牌設計、網站介面與創意專案。" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-soft: #121826;
+      --panel: rgba(18, 24, 38, 0.76);
+      --panel-strong: rgba(19, 26, 42, 0.92);
+      --line: rgba(255, 255, 255, 0.10);
+      --text: #f4f7fb;
+      --muted: rgba(244, 247, 251, 0.72);
+      --soft: rgba(244, 247, 251, 0.52);
+      --accent: #7cf7d4;
+      --accent-2: #78a8ff;
+      --accent-3: #ffb86b;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      --radius-xl: 36px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --font: "Avenir Next", "Segoe UI", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(120, 168, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 12%, rgba(124, 247, 212, 0.14), transparent 20%),
+        radial-gradient(circle at 70% 78%, rgba(255, 184, 107, 0.10), transparent 18%),
+        linear-gradient(180deg, #0b0f16 0%, #101827 54%, #0d1117 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
+    }
+
+    .wrap {
+      width: min(1240px, calc(100% - 32px));
+      margin: 18px auto 30px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .topbar, .card, .hero, .section {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent 22%), var(--panel);
+      backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      border-radius: 999px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124, 247, 212, 1), rgba(120, 168, 255, 1));
+      color: #071018;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      box-shadow: 0 16px 34px rgba(120, 168, 255, 0.22);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-top: 2px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    .hero {
+      border-radius: var(--radius-xl);
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -100px auto;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(124, 247, 212, 0.18), transparent 68%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    .lede {
+      max-width: 58ch;
+      margin: 20px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(124, 247, 212, 1), rgba(120, 168, 255, 1));
+      color: #061018;
+      border-color: transparent;
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .portrait {
+      border-radius: 28px;
+      padding: 22px;
+      min-height: 250px;
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.18), transparent 16%),
+        linear-gradient(160deg, rgba(124, 247, 212, 0.22), rgba(120, 168, 255, 0.18) 40%, rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::after {
+      content: "";
+      position: absolute;
+      inset: auto 14px 14px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 26%);
+      transform: rotate(-12deg);
+      opacity: 0.8;
+    }
+
+    .portrait .label {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 28px;
+      margin-top: 34px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124, 247, 212, 1), rgba(120, 168, 255, 1));
+      color: #071018;
+      font-weight: 900;
+      font-size: 2rem;
+      box-shadow: 0 18px 40px rgba(120, 168, 255, 0.24);
+    }
+
+    .portrait h2 {
+      margin: 16px 0 6px;
+      font-size: 1.6rem;
+    }
+
+    .portrait p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      border-radius: 22px;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-top: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .section {
+      border-radius: var(--radius-xl);
+      padding: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.7;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project {
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 320px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      grid-template-rows: 180px 1fr;
+    }
+
+    .project-visual {
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.20), transparent 18%),
+        linear-gradient(135deg, rgba(124, 247, 212, 0.26), rgba(120, 168, 255, 0.20) 42%, rgba(255, 184, 107, 0.12));
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), transparent),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.10) 0,
+          rgba(255,255,255,0.10) 12px,
+          transparent 12px,
+          transparent 24px
+        );
+      opacity: 0.7;
+    }
+
+    .project-body {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .project-body .tag {
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-body h4 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .project-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding-top: 6px;
+      color: var(--soft);
+      font-size: 0.88rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .contact p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .footer {
+      padding: 4px 2px 8px;
+      color: var(--soft);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .projects, .about-grid, .contact {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 18px, 1240px); margin-top: 12px; }
+      .topbar, .hero, .section { border-radius: 24px; }
+      .hero, .section { padding: 20px; }
+      .nav { gap: 12px; }
+      h1 { max-width: 100%; font-size: clamp(2.3rem, 15vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="返回首頁">
+        <div class="mark">L</div>
+        <div>
+          <strong>Studio Lumen</strong>
+          <span>Design Portfolio</span>
+        </div>
+      </a>
+      <nav class="nav" aria-label="主選單">
+        <a href="#work">作品</a>
+        <a href="#about">關於</a>
+        <a href="#services">服務</a>
+        <a href="#contact">聯絡</a>
+      </nav>
+    </header>
+
+    <main id="home" class="hero">
+      <section>
+        <p class="eyebrow">Creative Direction / UI / Brand</p>
+        <h1>把品牌故事，做成會讓人停下來看的畫面。</h1>
+        <p class="lede">
+          我是 Charlie Chen，一位專注於品牌識別、網站介面與數位體驗的設計師。
+          我喜歡用清晰的結構、細緻的動態與有溫度的視覺語言，幫助品牌建立記憶點與轉換力。
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#work">看精選作品</a>
+          <a class="btn secondary" href="#contact">預約合作</a>
+        </div>
+      </section>
+
+      <aside class="hero-aside">
+        <div class="portrait">
+          <div class="label">Available for freelance · 2026</div>
+          <div class="avatar">C</div>
+          <h2>Charlie Chen</h2>
+          <p>品牌設計師 / UI Designer / Art Direction</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span>完成專案</span>
+            <strong>48+</strong>
+          </div>
+          <div class="stat">
+            <span>合作客戶</span>
+            <strong>26</strong>
+          </div>
+          <div class="stat">
+            <span>設計年資</span>
+            <strong>8 年</strong>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section id="work" class="section">
+      <div class="section-head">
+        <div>
+          <h3>精選作品</h3>
+          <p>從品牌重塑、行銷活動頁到產品介面，我把每個專案都當成一個完整敘事去設計。</p>
+        </div>
+      </div>
+
+      <div class="projects">
+        <article class="project">
+          <div class="project-visual"></div>
+          <div class="project-body">
+            <div class="tag">Brand Identity</div>
+            <h4>North Field Coffee</h4>
+            <p>為新創咖啡品牌設計識別系統、包裝語言與社群模板，讓整體視覺兼具溫度與現代感。</p>
+            <div class="meta">
+              <span>品牌重塑</span>
+              <span>2026</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-visual"></div>
+          <div class="project-body">
+            <div class="tag">Web Experience</div>
+            <h4>Motion Atelier</h4>
+            <p>打造高質感作品集網站，透過卡片層次、動線節奏與精準留白，提升瀏覽停留時間。</p>
+            <div class="meta">
+              <span>網站設計</span>
+              <span>2025</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-visual"></div>
+          <div class="project-body">
+            <div class="tag">Product UI</div>
+            <h4>Studio Ops Dashboard</h4>
+            <p>為內部營運平台建立清楚的資訊架構與系統元件，降低學習成本並提升操作效率。</p>
+            <div class="meta">
+              <span>介面系統</span>
+              <span>2025</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="section-head">
+        <div>
+          <h3>我能幫上什麼</h3>
+          <p>如果你需要的不只是好看，而是能清楚說服受眾、幫助品牌前進的設計，這裡是我的工作範圍。</p>
+        </div>
+      </div>
+
+      <div class="chips">
+        <span class="chip">品牌識別系統</span>
+        <span class="chip">網站首頁與活動頁</span>
+        <span class="chip">UI / UX 設計</span>
+        <span class="chip">簡報與提案視覺</span>
+        <span class="chip">設計系統建立</span>
+        <span class="chip">社群視覺延伸</span>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-head">
+        <div>
+          <h3>關於我</h3>
+          <p>我偏好乾淨但有個性的畫面，講究層級、節奏與一致性，也很在意設計是否真的解決問題。</p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="card section" style="padding: 22px;">
+          <h4 style="margin:0 0 12px; font-size:1.08rem;">設計方法</h4>
+          <ul class="list">
+            <li><span>需求釐清與資訊整理</span><span>01</span></li>
+            <li><span>視覺方向與風格探索</span><span>02</span></li>
+            <li><span>元件化與細節打磨</span><span>03</span></li>
+            <li><span>交付規範與延展應用</span><span>04</span></li>
+          </ul>
+        </div>
+
+        <div class="card section" style="padding: 22px;">
+          <h4 style="margin:0 0 12px; font-size:1.08rem;">工具與能力</h4>
+          <ul class="list">
+            <li><span>Figma / Design System</span><span>主力</span></li>
+            <li><span>Webflow / HTML CSS</span><span>常用</span></li>
+            <li><span>品牌策略與敘事</span><span>核心</span></li>
+            <li><span>動態與互動設計</span><span>加分</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact">
+        <div>
+          <h3 style="margin:0; font-size:1.5rem;">準備好開始下一個專案了嗎？</h3>
+          <p>
+            如果你正在找一位能把品牌、網站和內容整合成一致體驗的設計師，
+            我很樂意一起把想法做成可落地的作品。
+          </p>
+        </div>
+        <a class="btn primary" href="mailto:hello@studiolumen.design">hello@studiolumen.design</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Studio Lumen</span>
+      <span>Designed for portfolio showcase</span>
+    </footer>
+  </div>
+</body>
+</html>
