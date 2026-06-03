@@ -481,6 +481,22 @@
       h1 { max-width: 100%; font-size: clamp(2.3rem, 15vw, 4rem); }
     }
   </style>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      location.replace("m.Index.html");
+    }
+  </script>
 </head>
 <body>
   <div class="grain"></div>
