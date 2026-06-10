@@ -1,10 +1,13 @@
-const CACHE_NAME = "studio-lumen-v1";
+const CACHE_NAME = "jacob-studio-v1";
 const ASSETS = [
   "./",
   "./index.html",
+  "./m.index.html",
   "./manifest.webmanifest",
   "./icon-192.svg",
-  "./icon-512.svg"
+  "./icon-512.svg",
+  "./2025JACOB.jpg",
+  "./2025JACOB02.jpg"
 ];
 
 self.addEventListener("install", (event) => {

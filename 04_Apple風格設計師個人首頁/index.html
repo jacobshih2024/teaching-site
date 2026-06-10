@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacob — 設計師個人作品集</title>
+  <meta name="description" content="Jacob 設計師作品集，品牌識別、UI設計與數位體驗。" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --bg: #f5f5f7;
+      --text: #1d1d1f;
+      --text-2: #424245;
+      --text-3: #6e6e73;
+      --text-4: #86868b;
+      --accent: #A0784A;
+      --accent-dark: #8a6540;
+      --border: rgba(0,0,0,0.08);
+      --border-strong: rgba(0,0,0,0.14);
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-inner {
+      width: min(1100px, 100% - 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .container {
+      width: min(1100px, 100% - 48px);
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      padding: 18px 0 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.04;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-3);
+      max-width: 48ch;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 980px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    .btn-ghost {
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .btn-ghost:hover { opacity: 0.75; }
+
+    /* ── PROFILE CARD ── */
+    .profile-card {
+      background: var(--bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06), 0 0 0 1px var(--border);
+    }
+
+    .profile-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: linear-gradient(145deg, #e8e8ed 0%, #d1d1d6 100%);
+      position: relative;
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: filter 0.4s ease;
+    }
+
+    .profile-card:hover .profile-photo {
+      filter: grayscale(100%) contrast(1.15);
+    }
+
+    /* 馬賽克格線覆蓋層 */
+    .profile-photo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(0deg,   rgba(0,0,0,0.30) 0, rgba(0,0,0,0.30) 1px, transparent 1px, transparent 14px),
+        repeating-linear-gradient(90deg,  rgba(0,0,0,0.30) 0, rgba(0,0,0,0.30) 1px, transparent 1px, transparent 14px);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .profile-card:hover .profile-photo-wrap::before {
+      opacity: 1;
+    }
+
+    /* 覆蓋層（由 JS 控制） */
+    .overlay-white, .overlay-black {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .overlay-white { background: #fff; }
+    .overlay-black { background: #000; }
+
+    .profile-photo-2 {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .profile-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .profile-fallback-initial {
+      width: 96px;
+      height: 96px;
+      border-radius: 28px;
+      background: rgba(0,113,227,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .profile-fallback-hint {
+      font-size: 0.8rem;
+      color: var(--text-4);
+    }
+
+    .profile-info {
+      padding: 18px 20px 22px;
+    }
+
+    .profile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 980px;
+      background: rgba(160, 120, 74, 0.10);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .profile-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(160, 120, 74, 1);
+      flex-shrink: 0;
+    }
+
+    .profile-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .profile-role {
+      font-size: 0.88rem;
+      color: var(--text-3);
+      line-height: 1.5;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-top: 16px;
+      box-shadow: 0 0 0 1px var(--border);
+    }
+
+    .stat {
+      background: var(--white);
+      padding: 16px 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-4);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-white { background: var(--white); }
+    .section-gray  { background: var(--bg); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-3);
+      max-width: 50ch;
+      line-height: 1.75;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.10);
+    }
+
+    .project-thumb {
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(2px);
+    }
+
+    .thumb-blue, .thumb-green, .thumb-warm {
+      background: linear-gradient(145deg, #e8e8ed 0%, #c7c7cc 100%);
+    }
+
+    .project-body { padding: 20px; }
+
+    .project-cat {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--text-3);
+      line-height: 1.68;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-4);
+    }
+
+    /* ── SERVICES ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+    }
+
+    .chip {
+      padding: 10px 20px;
+      border-radius: 980px;
+      background: rgba(160, 120, 74, 0.10);
+      border: 1px solid rgba(160, 120, 74, 0.20);
+      font-size: 0.92rem;
+      color: rgba(160, 120, 74, 1);
+      cursor: default;
+      transition: all 0.18s;
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+      background: rgba(160, 120, 74, 0.85);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .about-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 14px;
+      background: var(--bg);
+      border-radius: 11px;
+      font-size: 0.9rem;
+      color: var(--text-2);
+    }
+
+    .list li span:last-child {
+      color: var(--text-4);
+      font-size: 0.84rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: #000000;
+      border-radius: 28px;
+      padding: 72px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("2025JACOB02.jpg") right 10% / 50% auto no-repeat;
+      opacity: 0.70;
+      pointer-events: none;
+    }
+
+    .contact-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box h3 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.68);
+      max-width: 44ch;
+      margin: 0 auto 32px;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--text);
+      padding: 14px 28px;
+      font-weight: 600;
+    }
+
+    .btn-white:hover {
+      background: rgba(255,255,255,0.88);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    .footer-wordmark {
+      text-align: center;
+      font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: #d1d1d6;
+      line-height: 1;
+      padding: 40px 0 0;
+      background: var(--bg);
+      user-select: none;
+      overflow: hidden;
+    }
+
+    footer {
+      background: var(--bg);
+      padding: 16px 0 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      width: min(1100px, 100% - 48px);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.83rem;
+      color: var(--text-4);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow, .hero h1, .hero-desc, .hero-actions {
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1       { animation-delay: 0.08s; }
+    .hero-desc     { animation-delay: 0.16s; }
+    .hero-actions  { animation-delay: 0.22s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-grid        { grid-template-columns: 1fr; }
+      .profile-card     { max-width: 360px; }
+      .projects-grid    { grid-template-columns: 1fr 1fr; }
+      .about-grid       { grid-template-columns: 1fr; }
+      .contact-box      { padding: 48px 28px; }
+    }
+
+    @media (max-width: 580px) {
+      .section          { padding: 60px 0; }
+      .hero             { padding: 60px 0 48px; }
+      .projects-grid    { grid-template-columns: 1fr; }
+      .nav-links        { display: none; }
+      .contact-box h3   { font-size: 1.5rem; }
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#A0784A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Jacob Studio" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml" />
+  <script>
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      location.replace("m.index.html");
+    }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="#home">Jacob Studio</a>
+      <ul class="nav-links">
+        <li><a href="#work">作品</a></li>
+        <li><a href="#services">服務</a></li>
+        <li><a href="#about">關於</a></li>
+        <li><a href="#contact">聯絡</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- 左欄：文字 -->
+        <div>
+          <p class="hero-eyebrow">Creative Direction · UI · Brand</p>
+          <h1>把品牌故事，<br>做成讓人<br>停下來看的畫面。</h1>
+          <p class="hero-desc">
+            我是 JACOB，一位專注於品牌識別、網站介面與數位體驗的設計師。
+            用清晰的結構、細緻的動態與有溫度的視覺語言，幫助品牌建立記憶點與轉換力。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">看精選作品</a>
+            <a class="btn btn-ghost" href="#contact">預約合作 →</a>
+          </div>
+        </div>
+
+        <!-- 右欄：個人照片卡片 -->
+        <div>
+          <div class="profile-card">
+            <div class="profile-photo-wrap">
+              <img
+                class="profile-photo"
+                src="2025JACOB.jpg"
+                alt="JACOB 個人照"
+              />
+            </div>
+
+            <div class="profile-info">
+              <div class="profile-badge">Available for freelance · 2026</div>
+              <div class="profile-name">JACOB</div>
+              <div class="profile-role">品牌設計師 / UI Designer / Art Direction</div>
+            </div>
+          </div>
+
+          <!-- 數據列 -->
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">200+</div>
+              <div class="stat-label">完成專案</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">600</div>
+              <div class="stat-label">合作客戶</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">25Y</div>
+              <div class="stat-label">設計年資</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="section section-gray">
+    <div class="container">
+      <p class="section-label">精選作品</p>
+      <h2 class="section-title">每個專案都是<br>一個完整的敘事。</h2>
+      <p class="section-desc">從品牌重塑、行銷活動頁到產品介面，我把每個專案都當成說服與感動的設計挑戰。</p>
+
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-thumb thumb-blue"></div>
+          <div class="project-body">
+            <p class="project-cat">Brand Identity</p>
+            <h3 class="project-title">North Field Coffee</h3>
+            <p class="project-desc">為新創咖啡品牌設計識別系統、包裝語言與社群模板，讓整體視覺兼具溫度與現代感。</p>
+            <div class="project-footer">
+              <span>品牌重塑</span><span>2026</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb thumb-green"></div>
+          <div class="project-body">
+            <p class="project-cat">Web Experience</p>
+            <h3 class="project-title">Motion Atelier</h3>
+            <p class="project-desc">打造高質感作品集網站，透過卡片層次、動線節奏與精準留白，提升瀏覽停留時間。</p>
+            <div class="project-footer">
+              <span>網站設計</span><span>2025</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb thumb-warm"></div>
+          <div class="project-body">
+            <p class="project-cat">Product UI</p>
+            <h3 class="project-title">Studio Ops Dashboard</h3>
+            <p class="project-desc">為內部營運平台建立清楚的資訊架構與系統元件，降低學習成本並提升操作效率。</p>
+            <div class="project-footer">
+              <span>介面系統</span><span>2025</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section section-white">
+    <div class="container">
+      <p class="section-label">服務範圍</p>
+      <h2 class="section-title">不只是好看，<br>而是能讓品牌前進的設計。</h2>
+      <p class="section-desc">如果你需要的是能清楚說服受眾、幫助品牌前進的設計，這裡是我的工作範圍。</p>
+      <div class="chips">
+        <span class="chip">品牌識別系統</span>
+        <span class="chip">網站首頁與活動頁</span>
+        <span class="chip">UI / UX 設計</span>
+        <span class="chip">簡報與提案視覺</span>
+        <span class="chip">設計系統建立</span>
+        <span class="chip">社群視覺延伸</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section section-gray">
+    <div class="container">
+      <p class="section-label">關於我</p>
+      <h2 class="section-title">偏好乾淨但有個性<br>的畫面。</h2>
+      <p class="section-desc">講究層級、節奏與一致性，也很在意設計是否真的解決問題而非只是美觀。</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h4>設計方法</h4>
+          <ul class="list">
+            <li><span>需求釐清與資訊整理</span><span>01</span></li>
+            <li><span>視覺方向與風格探索</span><span>02</span></li>
+            <li><span>元件化與細節打磨</span><span>03</span></li>
+            <li><span>交付規範與延展應用</span><span>04</span></li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h4>工具與能力</h4>
+          <ul class="list">
+            <li><span>Figma / Design System</span><span>主力</span></li>
+            <li><span>Webflow / HTML CSS</span><span>常用</span></li>
+            <li><span>品牌策略與敘事</span><span>核心</span></li>
+            <li><span>動態與互動設計</span><span>加分</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-white">
+    <div class="container">
+      <div class="contact-box">
+        <h3>準備好開始下一個專案了嗎？</h3>
+        <p>如果你正在找一位能把品牌、網站和內容整合成一致體驗的設計師，我很樂意一起把想法做成可落地的作品。</p>
+        <a class="btn btn-white" href="mailto:2005jacob@gmail.com">2005jacob@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER WORDMARK -->
+  <div class="footer-wordmark">JACOB</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Jacob Studio</span>
+      <span>Designed with care</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const card     = document.querySelector('.profile-card');
+      const wrap     = document.querySelector('.profile-photo-wrap');
+      const photo1   = wrap.querySelector('.profile-photo');
+
+      // 建立第二張照片
+      const photo2 = document.createElement('img');
+      photo2.src = '2025JACOB02.jpg';
+      photo2.className = 'profile-photo-2';
+      wrap.appendChild(photo2);
+
+      // 建立白色 & 黑色覆蓋層
+      const white = document.createElement('div');
+      white.className = 'overlay-white';
+      wrap.appendChild(white);
+
+      const black = document.createElement('div');
+      black.className = 'overlay-black';
+      wrap.appendChild(black);
+
+      let timers = [];
+
+      function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+      function set(el, props) { Object.assign(el.style, props); }
+
+      function reset() {
+        clearTimers();
+        set(photo1, { filter: '' });
+        set(photo2, { opacity: '0', transition: 'none', transform: 'scale(1)' });
+        set(white,  { opacity: '0', transition: 'opacity 0.3s ease' });
+        set(black,  { opacity: '0', transition: 'opacity 0.3s ease' });
+      }
+
+      card.addEventListener('mouseenter', () => {
+        clearTimers();
+
+        // 白色覆蓋淡入（延遲 0.2s，歷時 1.5s）
+        set(white, { transition: 'opacity 1.5s ease 0.2s', opacity: '1' });
+
+        // 1.7s 後：白→黑
+        timers.push(setTimeout(() => {
+          set(white, { transition: 'opacity 0.9s ease', opacity: '0' });
+          set(black, { transition: 'opacity 0.9s ease', opacity: '1' });
+
+          // 0.9s 後：黑淡出，換成 photo2
+          timers.push(setTimeout(() => {
+            set(photo2, { transition: 'none', opacity: '1', transform: 'scale(1.1)' });
+            set(black,  { transition: 'opacity 0.8s ease', opacity: '0' });
+          }, 900));
+
+        }, 1700));
+      });
+
+      card.addEventListener('mouseleave', reset);
+    })();
+  </script>
+
+</body>
+</html>

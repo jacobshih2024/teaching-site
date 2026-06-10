@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Jacob Studio</title>
+  <meta name="description" content="Jacob 設計師作品集，品牌識別、UI設計與數位體驗。" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#A0784A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Jacob Studio" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --white: #ffffff;
+      --text: #1d1d1f;
+      --text-2: #424245;
+      --text-3: #6e6e73;
+      --text-4: #86868b;
+      --accent: #A0784A;
+      --accent-dark: #8a6540;
+      --border: rgba(0,0,0,0.08);
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: calc(12px + var(--safe-top)) 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      padding: 7px 16px;
+      border-radius: 980px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ── HERO PHOTO ── */
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: #e8e8ed;
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.55) 100%);
+    }
+
+    .hero-photo-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 980px;
+      background: rgba(160,120,74,0.20);
+      border: 1px solid rgba(160,120,74,0.30);
+      color: #f5d9b0;
+      font-size: 0.76rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(160,120,74,1);
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: white;
+      line-height: 1;
+    }
+
+    .hero-role {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      margin-top: 4px;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      background: var(--white);
+      padding: 28px 20px 24px;
+    }
+
+    .intro-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .intro h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-3);
+      margin-bottom: 20px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 980px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-ghost   { color: var(--accent); background: rgba(160,120,74,0.08); }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: var(--border);
+      margin: 0 20px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
+    }
+
+    .stat {
+      background: var(--white);
+      padding: 14px 8px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-4);
+      margin-top: 2px;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 36px 20px;
+    }
+
+    .section-white { background: var(--white); }
+    .section-gray  { background: var(--bg); }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-3);
+      line-height: 1.75;
+    }
+
+    /* ── PROJECTS ── */
+    .projects {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .project-thumb {
+      aspect-ratio: 16/9;
+      background: linear-gradient(145deg, #e8e8ed 0%, #c7c7cc 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .project-body { padding: 16px; }
+
+    .project-cat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: var(--text-3);
+      line-height: 1.65;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-4);
+    }
+
+    /* ── CHIPS ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .chip {
+      padding: 9px 16px;
+      border-radius: 980px;
+      background: rgba(160,120,74,0.10);
+      border: 1px solid rgba(160,120,74,0.20);
+      font-size: 0.88rem;
+      color: rgba(160,120,74,1);
+      transition: all 0.18s;
+    }
+
+    /* ── ABOUT ── */
+    .about-cards {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .about-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .list { list-style: none; display: grid; gap: 7px; }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg);
+      border-radius: 10px;
+      font-size: 0.86rem;
+      color: var(--text-2);
+    }
+
+    .list li span:last-child { color: var(--text-4); }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: #000;
+      border-radius: 22px;
+      padding: 40px 24px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("2025JACOB02.jpg") 68% 22% / cover no-repeat;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .contact-box > * { position: relative; z-index: 1; }
+
+    .contact-box h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: white;
+      margin-bottom: 12px;
+      max-width: 37%;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 37%;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 980px;
+      background: white;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ── WORDMARK ── */
+    .wordmark {
+      text-align: center;
+      font-size: clamp(4rem, 22vw, 8rem);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: #d1d1d6;
+      line-height: 1;
+      padding: 32px 0 0;
+      background: var(--bg);
+      user-select: none;
+      overflow: hidden;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      padding: 14px 20px calc(16px + var(--safe-bottom));
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="#">Jacob Studio</a>
+    <a class="nav-cta" href="#contact">聯絡我</a>
+  </nav>
+
+  <!-- HERO PHOTO -->
+  <div class="hero-photo">
+    <img src="2025JACOB.jpg" alt="JACOB" />
+    <div class="hero-photo-overlay"></div>
+    <div class="hero-photo-label">
+      <div class="hero-badge">Available for freelance · 2026</div>
+      <div class="hero-name">JACOB</div>
+      <div class="hero-role">品牌設計師 / UI Designer / Art Direction</div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p class="intro-eyebrow">Creative Direction · UI · Brand</p>
+    <h1>把品牌故事，做成讓人停下來看的畫面。</h1>
+    <p>我是 JACOB，專注於品牌識別、網站介面與數位體驗設計。用清晰的結構與有溫度的視覺語言，幫助品牌建立記憶點。</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#work">看精選作品</a>
+      <a class="btn btn-ghost"   href="#contact">預約合作</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div style="background:var(--white); padding: 0 0 24px;">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">200+</div>
+        <div class="stat-label">完成專案</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">600</div>
+        <div class="stat-label">合作客戶</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">25Y</div>
+        <div class="stat-label">設計年資</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <div id="work" class="section section-gray">
+    <p class="section-label">精選作品</p>
+    <h2 class="section-title">每個專案都是<br>一個完整的敘事。</h2>
+    <p class="section-desc">從品牌重塑、行銷活動頁到產品介面，我把每個專案都當成說服與感動的挑戰。</p>
+
+    <div class="projects">
+      <div class="project-card">
+        <div class="project-thumb"></div>
+        <div class="project-body">
+          <p class="project-cat">Brand Identity</p>
+          <h3 class="project-title">North Field Coffee</h3>
+          <p class="project-desc">為新創咖啡品牌設計識別系統、包裝語言與社群模板。</p>
+          <div class="project-footer"><span>品牌重塑</span><span>2026</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb"></div>
+        <div class="project-body">
+          <p class="project-cat">Web Experience</p>
+          <h3 class="project-title">Motion Atelier</h3>
+          <p class="project-desc">打造高質感作品集網站，透過卡片層次與精準留白提升體驗。</p>
+          <div class="project-footer"><span>網站設計</span><span>2025</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb"></div>
+        <div class="project-body">
+          <p class="project-cat">Product UI</p>
+          <h3 class="project-title">Studio Ops Dashboard</h3>
+          <p class="project-desc">為內部營運平台建立清楚的資訊架構與系統元件。</p>
+          <div class="project-footer"><span>介面系統</span><span>2025</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="section section-white">
+    <p class="section-label">服務範圍</p>
+    <h2 class="section-title">不只是好看，<br>而是讓品牌前進的設計。</h2>
+    <div class="chips">
+      <span class="chip">品牌識別系統</span>
+      <span class="chip">網站首頁與活動頁</span>
+      <span class="chip">UI / UX 設計</span>
+      <span class="chip">簡報與提案視覺</span>
+      <span class="chip">設計系統建立</span>
+      <span class="chip">社群視覺延伸</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" class="section section-gray">
+    <p class="section-label">關於我</p>
+    <h2 class="section-title">偏好乾淨但<br>有個性的畫面。</h2>
+    <p class="section-desc">講究層級、節奏與一致性，也很在意設計是否真的解決問題。</p>
+
+    <div class="about-cards">
+      <div class="about-card">
+        <h4>設計方法</h4>
+        <ul class="list">
+          <li><span>需求釐清與資訊整理</span><span>01</span></li>
+          <li><span>視覺方向與風格探索</span><span>02</span></li>
+          <li><span>元件化與細節打磨</span><span>03</span></li>
+          <li><span>交付規範與延展應用</span><span>04</span></li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>工具與能力</h4>
+        <ul class="list">
+          <li><span>Figma / Design System</span><span>主力</span></li>
+          <li><span>Webflow / HTML CSS</span><span>常用</span></li>
+          <li><span>品牌策略與敘事</span><span>核心</span></li>
+          <li><span>動態與互動設計</span><span>加分</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section section-white">
+    <div class="contact-box">
+      <h3>準備好開始下一個專案了嗎？</h3>
+      <p>如果你正在找一位能把品牌、網站和內容整合成一致體驗的設計師，我很樂意一起把想法做成可落地的作品。</p>
+      <a class="btn-white" href="mailto:2005jacob@gmail.com">2005jacob@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- WORDMARK -->
+  <div class="wordmark">JACOB</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Jacob Studio</span>
+    <span>Designed with care</span>
+  </footer>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+
+</body>
+</html>
