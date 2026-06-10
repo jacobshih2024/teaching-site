@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "skills": {
+    "2606_課程教材編寫": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_課程教材編寫/SKILL.md",
+      "computedHash": "19e1ec06c0b70c1509e9b010697e148751d4751e8b8b233c879a19f1cf21735e"
+    },
+    "2606_企業客製化版本": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_企業客製化版本/SKILL.md",
+      "computedHash": "84bc29229fe653d01143047639075938b6a031a9a523c2462cc2e3fc017ed584"
+    },
+    "2606_電子書與手冊出版": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_電子書與手冊出版/SKILL.md",
+      "computedHash": "14587bd2e8d50452f67e154c337e8fd493805619d2cdcd3c973ae2d6d7fd84d2"
+    },
+    "2606_課程大綱設計": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_課程大綱設計/SKILL.md",
+      "computedHash": "fe7c8540d5b6a40e33b1393675bb2da4d6c64eb81e905223c166ce31e0a0a9e6"
+    },
+    "2606_講義網頁化工具": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_講義網頁化工具/SKILL.md",
+      "computedHash": "b56f437830b2edaffa1739ba3b8e234c7c1c2da1687a21b610ccae868486eb81"
+    },
+    "2606_網頁互動美化加強": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_網頁互動美化加強/SKILL.md",
+      "computedHash": "dfd26b5dd0a55471540ed23cae974a09d337eb5b8201fed2942d72afc86ee7f1"
+    },
+    "2606_教學網站核心主程式": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_教學網站核心主程式/SKILL.md",
+      "computedHash": "83b0a856ce0dd8240c7eac43762f3b33fcb94ded54f04888a544fa3c6f98e963"
+    },
+    "2606_教學網站視覺設計": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_教學網站視覺設計/SKILL.md",
+      "computedHash": "811de32acd953360a52f18e4fe9156473b248e6add667474f1ff53b479894f9f"
+    },
+    "2606_網站檔案一致性檢查": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_網站檔案一致性檢查/SKILL.md",
+      "computedHash": "76032816c105748b29e57c5415cd3dd7a831559c109d55527cb8e44a6cb967b1"
+    },
+    "2606_網頁配圖與AI生圖": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_網頁配圖與AI生圖/SKILL.md",
+      "computedHash": "7f8d85b4478e2efda30c15288dc0b03d5468e4db1f1bab6d844cdeb9891fb0b9"
+    },
+    "2606_網頁畫面自動測試": {
+      "source": "kevintsai1202/teaching-site-skills",
+      "sourceType": "github",
+      "skillPath": "2606_網頁畫面自動測試/SKILL.md",
+      "computedHash": "8c77f0d6f48b0fef62b510236382856d6bd6fbde9bb8d254febd8db41cfe783f"
+    }
+  }
+}
